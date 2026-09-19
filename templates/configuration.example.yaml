@@ -1,23 +1,19 @@
-# Mr Smart Zigbee2MQTT coordinator examples
-# Do NOT copy both serial blocks. Choose the one matching the coordinator.
-
-# External SONOFF ZBDongle-P / CC2652P (tested):
+# Mr Smart iHost Zigbee2MQTT example
+version: 5
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://172.17.0.1:1884
 serial:
+  # Tested SONOFF ZBDongle-P mapping:
   port: /dev/ttyUSB0
   adapter: zstack
   baudrate: 115200
-
-# Prefer a stable /dev/serial/by-id/... path when Home Assistant exposes one.
-
-# Alternative: iHost MG21 / supported Silicon Labs radio through the
-# iHost Silicon Labs Multiprotocol add-on. Replace the hostname with the
-# actual add-on hostname and follow its firmware/setup documentation.
-# serial:
-#   adapter: ember
-#   port: tcp://<MULTIPROTOCOL-ADDON-HOSTNAME>:9999
-#   baudrate: 115200
-
-# MQTT is intentionally omitted here for the recommended Home Assistant
-# add-on path: when a Supervisor MQTT service is available, the add-on can
-# obtain its broker details automatically. Configure mqtt: explicitly only
-# when using a custom/external broker.
+frontend:
+  enabled: true
+  port: 8080
+homeassistant:
+  enabled: false
+advanced:
+  network_key: GENERATE
+  pan_id: GENERATE
+  ext_pan_id: GENERATE
