@@ -1,0 +1,13 @@
+# iHost Run-screen checklist
+- [ ] Image: `koenkk/zigbee2mqtt`
+- [ ] Network: `bridge`
+- [ ] Host port: `8080`
+- [ ] Add-on port: `8080`
+- [ ] Host volume: `zigbee2mqtt-data`
+- [ ] Add-on volume: `/app/data`
+- [ ] Environment: `ZIGBEE2MQTT_CONFIG_FRONTEND_ENABLED=true`
+- [ ] Select detected Zigbee USB coordinator
+- [ ] Map correct add-on path (tested ZBDongle-P: `/dev/ttyUSB0`)
+- [ ] Run
+- [ ] Complete onboarding at `http://<IHOST-IP>:8080`
+- [ ] Pair thermostat and confirm successful interview

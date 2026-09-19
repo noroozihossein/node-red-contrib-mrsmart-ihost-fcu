@@ -1,0 +1,19 @@
+# Mr Smart iHost Zigbee2MQTT example
+version: 5
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://172.17.0.1:1884
+serial:
+  # Tested SONOFF ZBDongle-P mapping:
+  port: /dev/ttyUSB0
+  adapter: zstack
+  baudrate: 115200
+frontend:
+  enabled: true
+  port: 8080
+homeassistant:
+  enabled: false
+advanced:
+  network_key: GENERATE
+  pan_id: GENERATE
+  ext_pan_id: GENERATE

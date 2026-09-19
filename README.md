@@ -1,27 +1,48 @@
-# node-red-contrib-mrsmart-ihost-fcu
+# Mr Smart – iHost Zigbee2MQTT Setup
 
-Mr Smart FCU integration for SONOFF iHost / Node-RED, designed for the Tuya TYBAC-006 fan-coil thermostat (`_TZE204_mpbki2zm`) through Zigbee2MQTT.
+Installer helper for running Zigbee2MQTT on SONOFF iHost as a prerequisite for the Mr Smart iHost FCU Node-RED integration.
 
-## Features
+## Tested iHost Docker settings
+- Image: `koenkk/zigbee2mqtt`
+- Network: `bridge`
+- Port: Host `8080` -> Add-on `8080`
+- Volume: `zigbee2mqtt-data` -> `/app/data`
+- Environment: `ZIGBEE2MQTT_CONFIG_FRONTEND_ENABLED=true`
+- USB: select the Zigbee coordinator detected by iHost
+- Tested ZBDongle-P add-on path: `/dev/ttyUSB0`
 
-- Native Node-RED node for iHost
-- Zigbee2MQTT device auto-discovery
-- FCU temperature, setpoint, operating mode and fan-speed control
-- Bidirectional state synchronization
-- eWeLink CUBE Web custom UI registration
-- CUBE CAST custom UI registration
-- Installer-supplied iHost address and MQTT port; no site-specific IP or MQTT port is pre-filled
+If a newly connected coordinator is not shown and iHost still shows the previous USB device, restart iHost once and reopen the Run screen.
 
-## Installation
+## First-run onboarding
+Open `http://<IHOST-IP>:8080`.
 
-Install the package from Node-RED **Manage palette**, or install the packaged `.tgz` file for local testing.
+Common settings:
+- MQTT server: `mqtt://172.17.0.1:1884`
+- Base topic: `zigbee2mqtt`
+- MQTT version: `4`
+- Frontend: enabled, port `8080`
+- Home Assistant integration: disabled unless required
 
-The installer must configure the iHost connection and the MQTT broker port used by the iHost Mosquitto container. The MQTT host can be left blank to use the configured iHost address.
+### Tested SONOFF ZBDongle-P / CC2652P
+- Adapter: `zstack`
+- Serial port: `/dev/ttyUSB0`
+- Baud rate: `115200`
 
-## Supported thermostat
+For other coordinators, select the correct adapter family; do not force `zstack`.
 
-Initial validated target: TYBAC-006 / Tuya TS0601, manufacturer fingerprint `_TZE204_mpbki2zm`.
+## TYBAC-006 pairing
+Enable Permit Join, put the thermostat in Zigbee pairing mode, and wait for a successful interview. Confirm TYBAC-006 / TS0601 and manufacturer `_TZE204_mpbki2zm`. If the first interview fails after joining, re-pair before reinstalling Zigbee2MQTT.
 
-## License
+## Mr Smart FCU
+After Zigbee2MQTT is operational:
+1. Install `node-red-contrib-mrsmart-ihost-fcu`.
+2. Configure the iHost connection/token.
+3. Configure the installation's MQTT connection.
+4. Select/discover the TYBAC-006.
+5. Deploy and verify CUBE Web and CAST.
 
-MIT
+## Automation boundary
+The repeatable Zigbee2MQTT settings can be pre-filled or supplied through configuration, but iHost owns host-level USB passthrough in its Docker Run UI. The physical coordinator must therefore be selected/mapped there, and different coordinator families can require different adapter drivers. This package intentionally does not attempt brittle Node-RED-side USB automation.
+
+## Security
+Keep MQTT and the Zigbee2MQTT frontend on the trusted local network. Do not expose them publicly without appropriate authentication and transport security.
