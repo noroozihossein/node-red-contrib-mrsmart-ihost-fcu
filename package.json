@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-mrsmart-ihost-fcu",
-  "version": "0.3.7",
+  "version": "0.4.0",
   "description": "Mr Smart iHost FCU controller for TYBAC-006 via Zigbee2MQTT, with native eWeLink CUBE Web and CAST custom UI support for SONOFF iHost",
   "keywords": [
     "node-red",

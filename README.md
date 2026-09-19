@@ -1,48 +1,34 @@
-# Mr Smart – iHost Zigbee2MQTT Setup
+# node-red-contrib-mrsmart-ihost-fcu
 
-Installer helper for running Zigbee2MQTT on SONOFF iHost as a prerequisite for the Mr Smart iHost FCU Node-RED integration.
+Mr Smart FCU integration for SONOFF iHost / Node-RED, designed for the Tuya TYBAC-006 fan-coil thermostat (`_TZE204_mpbki2zm`) through Zigbee2MQTT.
 
-## Tested iHost Docker settings
-- Image: `koenkk/zigbee2mqtt`
-- Network: `bridge`
-- Port: Host `8080` -> Add-on `8080`
-- Volume: `zigbee2mqtt-data` -> `/app/data`
-- Environment: `ZIGBEE2MQTT_CONFIG_FRONTEND_ENABLED=true`
-- USB: select the Zigbee coordinator detected by iHost
-- Tested ZBDongle-P add-on path: `/dev/ttyUSB0`
+## Features
 
-If a newly connected coordinator is not shown and iHost still shows the previous USB device, restart iHost once and reopen the Run screen.
+- Native Node-RED node for iHost
+- Zigbee2MQTT device auto-discovery
+- Installer device picker populated from `zigbee2mqtt/bridge/devices`
+- Multi-thermostat support: use one FCU node per thermostat and select each device independently
+- Stable IEEE-address binding with automatic Friendly Name/topic resolution after a rename
+- FCU temperature, setpoint, operating mode and fan-speed control
+- Bidirectional state synchronization
+- eWeLink CUBE Web custom UI registration
+- CUBE CAST custom UI registration
+- Installer-supplied iHost address and MQTT port; no site-specific IP or MQTT port is pre-filled
 
-## First-run onboarding
-Open `http://<IHOST-IP>:8080`.
+## Installation
 
-Common settings:
-- MQTT server: `mqtt://172.17.0.1:1884`
-- Base topic: `zigbee2mqtt`
-- MQTT version: `4`
-- Frontend: enabled, port `8080`
-- Home Assistant integration: disabled unless required
+Install the package from Node-RED **Manage palette**, or install the packaged `.tgz` file for local testing.
 
-### Tested SONOFF ZBDongle-P / CC2652P
-- Adapter: `zstack`
-- Serial port: `/dev/ttyUSB0`
-- Baud rate: `115200`
+The installer must configure the iHost connection and the MQTT broker port used by the iHost Mosquitto container. The MQTT host can be left blank to use the configured iHost address.
 
-For other coordinators, select the correct adapter family; do not force `zstack`.
+Select **Refresh Devices** in the FCU node editor, then choose the required thermostat from the dropdown. Zigbee2MQTT creates a Friendly Name automatically when a device joins; renaming it is optional. The node stores the device IEEE address as its stable identity and resolves the current Friendly Name for MQTT topics.
 
-## TYBAC-006 pairing
-Enable Permit Join, put the thermostat in Zigbee pairing mode, and wait for a successful interview. Confirm TYBAC-006 / TS0601 and manufacturer `_TZE204_mpbki2zm`. If the first interview fails after joining, re-pair before reinstalling Zigbee2MQTT.
+For multiple fan-coil zones, add one FCU node per thermostat. New nodes use their Node-RED node ID as the UI instance identifier when Instance ID is left blank, preventing Web/CAST route collisions. Existing flows with a manually configured Instance ID remain compatible.
 
-## Mr Smart FCU
-After Zigbee2MQTT is operational:
-1. Install `node-red-contrib-mrsmart-ihost-fcu`.
-2. Configure the iHost connection/token.
-3. Configure the installation's MQTT connection.
-4. Select/discover the TYBAC-006.
-5. Deploy and verify CUBE Web and CAST.
+## Supported thermostat
 
-## Automation boundary
-The repeatable Zigbee2MQTT settings can be pre-filled or supplied through configuration, but iHost owns host-level USB passthrough in its Docker Run UI. The physical coordinator must therefore be selected/mapped there, and different coordinator families can require different adapter drivers. This package intentionally does not attempt brittle Node-RED-side USB automation.
+Initial validated target: TYBAC-006 / Tuya TS0601, manufacturer fingerprint `_TZE204_mpbki2zm`.
 
-## Security
-Keep MQTT and the Zigbee2MQTT frontend on the trusted local network. Do not expose them publicly without appropriate authentication and transport security.
+## License
+
+MIT
