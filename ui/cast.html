@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Mr Smart FCU CAST</title><link rel="stylesheet" href="/mrsmart-fcu-assets/style.css"></head>
+<body class="cast cast-v030">
+<main class="cast30-shell">
+  <section class="cast30-temp">
+    <button id="minus" class="cast30-step" aria-label="Lower target">−</button>
+    <div class="cast30-readout">
+      <div class="cast30-target"><span id="setval">--°</span><small>TARGET</small></div>
+      <div class="cast30-meta"><span>ROOM <b id="current">--°</b></span><strong id="running">--</strong></div>
+    </div>
+    <button id="plus" class="cast30-step" aria-label="Raise target">+</button>
+  </section>
+  <section class="cast30-group">
+    <div class="cast30-title">MODE</div><div id="modes" class="cast30-grid"></div>
+  </section>
+  <section class="cast30-group">
+    <div class="cast30-title">FAN</div><div id="fans" class="cast30-grid"></div>
+  </section>
+  <section id="powerCard" hidden><span id="powerText"></span><button id="power"></button></section>
+</main>
+<script src="/mrsmart-fcu-assets/app.js"></script></body></html>

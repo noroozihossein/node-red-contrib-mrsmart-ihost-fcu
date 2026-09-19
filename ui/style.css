@@ -1,0 +1,113 @@
+:root{--bg:#07111f;--glass:rgba(16,29,49,.82);--line:rgba(255,255,255,.1);--txt:#f4f7fb;--muted:#91a0b7;--cyan:#62d9ff}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 20% 0,#173252,#091523 42%,#050a12);color:var(--txt)}body{padding:12px}.app{width:min(100%,430px);margin:auto}.hero,.card{background:var(--glass);border:1px solid var(--line);box-shadow:0 15px 38px #0006;backdrop-filter:blur(15px);border-radius:21px}.hero{padding:17px;margin-bottom:9px}.brand{font-size:10px;letter-spacing:.18em;color:var(--cyan);font-weight:800}.title{font-size:21px;font-weight:850;margin:4px 0}.status,.small{font-size:11px;color:var(--muted)}.temps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.box{padding:11px;border-radius:15px;background:#ffffff0d;border:1px solid var(--line)}.label{font-size:10px;color:var(--muted)}.temp{font-size:28px;font-weight:850;margin-top:2px}.card{padding:12px;margin:8px 0}.card h3{font-size:11px;margin:0 0 9px;color:#cbd7e8;text-transform:uppercase;letter-spacing:.08em}.row{display:flex;align-items:center;justify-content:space-between;gap:8px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.grid.four{grid-template-columns:repeat(4,1fr)}button,.ctrl,select,input{min-height:40px;border:1px solid var(--line);border-radius:12px;background:#ffffff0f;color:var(--txt);font-weight:700;padding:7px}button.active{background:linear-gradient(135deg,#62d9ff55,#7069ff44);border-color:#62d9ffaa}.setpoint{display:grid;grid-template-columns:44px 1fr 44px;align-items:center;gap:7px}.setvalue{text-align:center;font-size:33px;font-weight:850}.switch{width:48px;height:27px;border-radius:99px;padding:3px}.switch i{display:block;width:19px;height:19px;border-radius:50%;background:#fff;transition:.2s}.switch.active i{transform:translateX(19px);background:var(--cyan)}.dynamic{display:grid;gap:7px}.dyn{padding:9px;border-radius:12px;background:#ffffff09;border:1px solid var(--line)}.dynName{font-size:10px;color:var(--muted);margin-bottom:5px}select,input{width:100%;background:#101d30}.footer{text-align:center;color:#607087;font-size:9px;padding:8px}@media(max-width:360px){body{padding:6px}.hero,.card{border-radius:16px}.hero{padding:11px}.title{font-size:17px}.temp{font-size:23px}.grid.four{grid-template-columns:repeat(2,1fr)}}body.cast{padding:5px}body.cast .app{max-width:390px}body.cast .hero{padding:10px}body.cast .card{padding:9px;margin:5px 0}body.cast button,body.cast select,body.cast input{min-height:34px;font-size:10px}body.cast .temp{font-size:21px}body.cast .setvalue{font-size:25px}
+
+.dynHead{min-width:0}.hint{font-size:10px;opacity:.55;margin-top:3px;line-height:1.25}.binaryPair{display:grid;grid-template-columns:1fr 1fr;gap:7px}.binaryPair button,.textCtl button{min-height:38px}.numberCtl{display:flex;align-items:center;gap:8px}.numberCtl input{flex:1}.numberCtl span{font-size:12px;opacity:.65}.textCtl{display:grid;grid-template-columns:1fr 62px;gap:7px}.textCtl input{min-width:0}.readonly{opacity:.78}.cast .app{max-width:520px;padding:10px}.cast .hero{padding:14px}.cast .card.compact{padding:10px 12px;margin-top:8px}.cast .card h3{margin:0 0 7px}.cast .temps{gap:8px;margin-top:10px}.cast .box{padding:9px}.cast .temp{font-size:28px}.cast .castRun{font-size:15px;margin-top:6px}.cast .setpoint{min-height:44px}.cast .setvalue{font-size:27px}.cast .grid{gap:6px}.cast .grid button{min-height:38px;padding:7px 5px}.cast .footer{margin:8px 0 2px}
+@media(max-height:650px){.cast .brand{font-size:10px}.cast .title{font-size:22px}.cast .status{font-size:10px}.cast .hero{padding:10px}.cast .card.compact{padding:7px 10px;margin-top:6px}.cast .temps{margin-top:7px}.cast .box{padding:6px}.cast .temp{font-size:24px}.cast .setpoint{min-height:38px}.cast .grid button{min-height:33px}.cast .footer{display:none}}
+
+/* v0.1.4 thermostat dial */
+.thermostat{position:relative;margin-top:10px;padding:2px 0 0}.dial{position:relative;width:min(100%,300px);height:184px;margin:auto}.dial svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}.arcBg,.arcActive{fill:none;stroke-width:13;stroke-linecap:round}.arcBg{stroke:rgba(255,255,255,.08)}.arcActive{stroke:var(--cyan);filter:drop-shadow(0 0 8px rgba(98,217,255,.35));stroke-dasharray:78 22;transition:stroke .25s,stroke-dasharray .25s}.dialCenter{position:absolute;inset:37px 36px 0;text-align:center}.dialLabel,.dialTargetLabel{font-size:9px;letter-spacing:.12em;color:var(--muted);font-weight:800}.dialCurrent{font-size:42px;font-weight:900;line-height:1.02;margin:2px 0 7px}.dialTarget{font-size:22px;font-weight:850;line-height:1.05}.dialRun{font-size:10px;color:var(--cyan);font-weight:800;letter-spacing:.08em;margin-top:6px}.dialAdjust{position:absolute;left:0;right:0;bottom:4px;display:flex;justify-content:space-between;padding:0 22px;pointer-events:none}.dialAdjust button{pointer-events:auto;width:44px;height:44px;border-radius:50%;font-size:22px;padding:0;background:#ffffff12;backdrop-filter:blur(8px)}.dialAdjust button:active{transform:scale(.96)}.mode-cool .arcActive{stroke:#62d9ff}.mode-heat .arcActive{stroke:#ff9c68}.mode-fan .arcActive{stroke:#8fe3c0}.mode-off .arcActive{stroke:#718096;filter:none}.hero{overflow:hidden}.cast .dial{height:158px;max-width:270px}.cast .dialCenter{inset:30px 36px 0}.cast .dialCurrent{font-size:36px;margin-bottom:5px}.cast .dialTarget{font-size:20px}.cast .dialAdjust{bottom:2px;padding:0 27px}.cast .dialAdjust button{width:38px;height:38px;min-height:38px}.cast .hero{padding-bottom:8px}@media(max-height:650px){.cast .dial{height:137px;max-width:245px}.cast .dialCenter{inset:24px 36px 0}.cast .dialCurrent{font-size:31px}.cast .dialRun{margin-top:3px}.cast .dialAdjust button{width:34px;height:34px;min-height:34px}.cast .dialAdjust{padding:0 30px}}
+
+/* v0.1.5 interactive thermostat */
+#dialSvg{touch-action:none;cursor:pointer;user-select:none}.dialKnob{fill:#fff;stroke:var(--cyan);stroke-width:4;filter:drop-shadow(0 0 8px rgba(98,217,255,.75));pointer-events:none}.dialCenter{inset:43px 42px 0}.dialRoom{font-size:11px;letter-spacing:.08em;color:var(--muted);font-weight:800;margin-bottom:8px}.dialRoom span{color:#dce7f6;font-size:13px}.dialTarget{font-size:43px;font-weight:900;line-height:1;margin:0}.dialTargetLabel{font-size:9px;margin-top:3px}.dialRun{margin-top:8px}.dialAdjust{bottom:0;padding:0 13px}.dialAdjust button{width:36px;height:36px;min-height:36px;font-size:18px;opacity:.72}.mode-cool .dialKnob{stroke:#62d9ff}.mode-heat .dialKnob{stroke:#ff9c68}.mode-fan .dialKnob{stroke:#8fe3c0}.mode-off .dialKnob{stroke:#718096}.cast .dialCenter{inset:36px 42px 0}.cast .dialTarget{font-size:37px}.cast .dialRoom{margin-bottom:5px}.cast .dialAdjust button{width:32px;height:32px;min-height:32px}.cast .dialAdjust{padding:0 18px}@media(max-height:650px){.cast .dialCenter{inset:29px 42px 0}.cast .dialTarget{font-size:32px}.cast .dialRoom{font-size:9px;margin-bottom:3px}.cast .dialRun{font-size:9px}}
+
+/* v0.1.6 professional 270-degree climate dial */
+.thermostat{margin-top:8px;padding:0}
+.dial{position:relative;width:min(100%,330px);aspect-ratio:1/1;height:auto;margin:0 auto -28px}
+.dial svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#dialSvg{touch-action:none;cursor:grab;user-select:none}
+#dialSvg:active{cursor:grabbing}
+.arcBg,.arcActive{fill:none;stroke-width:14;stroke-linecap:round}
+.arcBg{stroke:rgba(255,255,255,.105)}
+.arcActive{stroke:var(--cyan);filter:drop-shadow(0 0 8px rgba(98,217,255,.30));transition:stroke .2s}
+.dialKnob{fill:#f7fbff;stroke:var(--cyan);stroke-width:5;filter:drop-shadow(0 0 9px rgba(98,217,255,.7));pointer-events:none}
+.dialCenter{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:58%;text-align:center;inset:auto}
+.dialTarget{font-size:52px;font-weight:900;line-height:.95;letter-spacing:-.045em}
+.dialTargetLabel{font-size:9px;letter-spacing:.16em;color:var(--muted);font-weight:850;margin-top:7px}
+.dialRoom{font-size:10px;letter-spacing:.09em;color:var(--muted);font-weight:800;margin:12px 0 0}
+.dialRoom span{color:#dce7f6;font-size:12px}
+.dialRun{font-size:10px;color:var(--cyan);font-weight:850;letter-spacing:.1em;margin-top:7px}
+.dialAdjust{position:absolute;left:50%;bottom:36px;transform:translateX(-50%);display:flex;gap:72px;padding:0;pointer-events:none}
+.dialAdjust button{pointer-events:auto;width:36px;height:36px;min-height:36px;border-radius:50%;font-size:18px;padding:0;opacity:.58;background:#ffffff0b}
+.mode-cool .arcActive{stroke:#62d9ff}.mode-cool .dialKnob{stroke:#62d9ff}
+.mode-heat .arcActive{stroke:#ff9c68}.mode-heat .dialKnob{stroke:#ff9c68}
+.mode-fan .arcActive{stroke:#8fe3c0}.mode-fan .dialKnob{stroke:#8fe3c0}
+.mode-off .arcActive{stroke:#718096;filter:none}.mode-off .dialKnob{stroke:#718096}
+.cast .dial{width:min(100%,270px);margin-bottom:-35px}
+.cast .dialTarget{font-size:43px}.cast .dialCenter{top:47%}
+.cast .dialAdjust{bottom:34px;gap:58px}.cast .dialAdjust button{width:31px;height:31px;min-height:31px}
+@media(max-height:650px){.cast .dial{width:min(100%,235px);margin-bottom:-42px}.cast .dialTarget{font-size:37px}.cast .dialRoom{margin-top:8px}.cast .dialAdjust{bottom:31px;gap:50px}}
+
+/* === v0.1.7 CLEAN FCU DIAL COMPONENT === */
+.v017-hero{padding:16px 14px 10px!important;overflow:hidden!important}
+.v017-dial{position:relative!important;width:300px!important;height:300px!important;max-width:100%!important;margin:0 auto!important}
+.v017-svg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;overflow:visible!important;touch-action:none!important;cursor:grab!important}
+.v017-track,.v017-active{fill:none!important;stroke-width:13!important;stroke-linecap:round!important}
+.v017-track{stroke:rgba(255,255,255,.11)!important}
+.v017-active{stroke:#62d9ff!important;filter:drop-shadow(0 0 7px rgba(98,217,255,.35))!important}
+.v017-knob{fill:#f8fbff!important;stroke:#62d9ff!important;stroke-width:5!important;filter:drop-shadow(0 0 8px rgba(98,217,255,.65))!important;pointer-events:none!important}
+.v017-center{position:absolute!important;left:50%!important;top:48%!important;transform:translate(-50%,-50%)!important;width:150px!important;text-align:center!important}
+.v017-target{font-size:48px!important;line-height:1!important;font-weight:900!important;letter-spacing:-2px!important}
+.v017-label{font-size:9px!important;font-weight:850!important;letter-spacing:1.6px!important;color:#8ea1b8!important;margin-top:5px!important}
+.v017-room{font-size:11px!important;font-weight:750!important;color:#aebed0!important;margin-top:13px!important}
+.v017-room span{font-size:14px!important;color:#eef7ff!important;font-weight:850!important}
+.v017-run{font-size:10px!important;color:#62d9ff!important;font-weight:850!important;letter-spacing:1px!important;margin-top:8px!important}
+.v017-minus,.v017-plus{position:absolute!important;bottom:31px!important;width:38px!important;height:38px!important;min-height:38px!important;border-radius:50%!important;padding:0!important;font-size:19px!important;z-index:5!important}
+.v017-minus{left:28px!important}.v017-plus{right:28px!important}
+.mode-heat .v017-active{stroke:#ff9c68!important}.mode-heat .v017-knob{stroke:#ff9c68!important}
+.mode-fan .v017-active{stroke:#8fe3c0!important}.mode-fan .v017-knob{stroke:#8fe3c0!important}
+.mode-off .v017-active{stroke:#718096!important;filter:none!important}.mode-off .v017-knob{stroke:#718096!important}
+.cast .v017-hero{padding:8px 8px 2px!important}
+.cast .v017-dial{width:220px!important;height:220px!important}
+.cast .v017-target{font-size:37px!important}.cast .v017-center{width:125px!important;top:47%!important}
+.cast .v017-room{margin-top:8px!important;font-size:9px!important}.cast .v017-room span{font-size:11px!important}
+.cast .v017-minus,.cast .v017-plus{width:31px!important;height:31px!important;min-height:31px!important;bottom:22px!important;font-size:16px!important}
+.cast .v017-minus{left:20px!important}.cast .v017-plus{right:20px!important}
+/* v0.2.0 stable editors */
+.fold{border:1px solid var(--line);border-radius:14px;background:#ffffff07;overflow:hidden}.fold+.fold{margin-top:8px}.fold summary{cursor:pointer;list-style:none;padding:12px 13px;font-size:11px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;color:#cbd7e8}.fold summary::-webkit-details-marker{display:none}.fold summary:after{content:'›';float:right;transform:rotate(90deg);opacity:.65}.fold[open] summary:after{transform:rotate(-90deg)}.foldBody{padding:0 10px 10px}.dayTabs{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:9px}.dayTabs button{min-height:32px;padding:4px 2px;font-size:9px}.periods{display:grid;gap:6px}.period{display:grid;grid-template-columns:30px 1fr 1fr;gap:6px;align-items:center}.period b{font-size:10px;color:var(--muted)}.period input{min-height:38px;font-size:12px;padding:6px}.scheduleActions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px}.scheduleActions button{min-height:36px}.numberCtl{display:grid;grid-template-columns:minmax(0,1fr) auto 58px;align-items:center;gap:6px}.numberCtl .applyNum{min-height:38px;padding:5px;font-size:10px}.rangeHint{font-size:9px;color:var(--muted);margin-top:4px}.invalid{border-color:#ff6b6b!important;box-shadow:0 0 0 1px #ff6b6b55!important}.dynamic{gap:8px}
+
+.scheduleMode{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}.scheduleMode button{white-space:nowrap}
+
+/* === v0.2.9 CAST: fixed no-scroll compact FCU panel === */
+html:has(body.cast-v029),body.cast-v029{width:100%;height:100%;min-height:0;overflow:hidden!important}
+body.cast-v029{padding:0!important;margin:0!important;background:#081321!important}
+.cast-v029 .cast-shell{width:100vw;height:100vh;max-width:none;margin:0;padding:5px;display:grid;grid-template-columns:minmax(88px,.9fr) minmax(112px,1.1fr);gap:5px;overflow:hidden}
+.cast-v029 .cast-temp,.cast-v029 .cast-controls{min-width:0;min-height:0}
+.cast-v029 .cast-temp{display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(16,29,49,.82);border:1px solid var(--line);border-radius:13px;padding:3px}
+.cast-v029 .cast-dialwrap{position:relative;width:min(100%,118px);aspect-ratio:1/1;flex:0 1 auto;min-height:0}
+.cast-v029 .cast-svg{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:pointer}
+.cast-v029 .v017-track,.cast-v029 .v017-active{stroke-width:16!important}
+.cast-v029 .v017-knob{stroke-width:7!important}
+.cast-v029 .cast-center{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);width:72%;text-align:center;line-height:1}
+.cast-v029 .cast-target{font-size:clamp(22px,10.5vw,39px);font-weight:900;letter-spacing:-1px;white-space:nowrap}
+.cast-v029 .cast-label{font-size:clamp(6px,2.5vw,9px);font-weight:850;letter-spacing:.12em;color:#91a0b7;margin-top:3px}
+.cast-v029 .cast-room{font-size:clamp(7px,2.8vw,10px);font-weight:800;color:#aebed0;margin-top:7px;white-space:nowrap}.cast-v029 .cast-room span{color:#eef7ff}
+.cast-v029 .cast-run{font-size:clamp(7px,2.8vw,10px);font-weight:850;color:var(--cyan);margin-top:5px;white-space:nowrap}
+.cast-v029 .cast-adjust{width:min(100%,106px);display:flex;justify-content:space-between;margin-top:-4px;z-index:2}
+.cast-v029 .cast-adjust button{width:28px;height:28px;min-height:28px;padding:0;border-radius:50%;font-size:16px}
+.cast-v029 .cast-controls{display:grid;grid-template-rows:1fr 1fr;gap:5px}
+.cast-v029 .cast-group{min-height:0;display:flex;flex-direction:column;background:rgba(16,29,49,.82);border:1px solid var(--line);border-radius:13px;padding:5px}
+.cast-v029 .cast-heading{font-size:8px;font-weight:850;letter-spacing:.1em;color:#cbd7e8;margin:0 0 3px 2px;flex:none}
+.cast-v029 .cast-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:3px;min-height:0;flex:1}
+.cast-v029 .cast-grid button{min-width:0;min-height:0!important;height:100%;padding:2px!important;border-radius:8px;font-size:clamp(7px,2.7vw,10px)!important;line-height:1.05;overflow:hidden;white-space:nowrap;text-overflow:clip}
+.cast-v029 .cast-power{display:none!important}
+@media (max-width:190px){.cast-v029 .cast-shell{grid-template-columns:1fr;grid-template-rows:1fr 1fr}.cast-v029 .cast-dialwrap{width:78px}.cast-v029 .cast-adjust{position:absolute;pointer-events:none}.cast-v029 .cast-adjust button{pointer-events:auto}}
+
+
+/* v0.3.0 CAST: fixed 2x2 FCU control card; no dial, no scrolling */
+html:has(body.cast-v030),body.cast-v030{width:100%;height:100%;min-width:0;min-height:0;overflow:hidden!important}
+body.cast-v030{margin:0!important;padding:0!important;background:#081321!important;color:#f4f7fb!important}
+.cast-v030 .cast30-shell{position:fixed;inset:0;width:100vw;height:100vh;overflow:hidden!important;padding:5px;display:grid;grid-template-rows:42% 29% 29%;gap:4px;background:linear-gradient(160deg,#0d2138,#07111f 70%)}
+.cast-v030 .cast30-temp,.cast-v030 .cast30-group{min-width:0;min-height:0;overflow:hidden;background:rgba(16,29,49,.94);border:1px solid rgba(255,255,255,.10);border-radius:12px}
+.cast-v030 .cast30-temp{display:grid;grid-template-columns:34px minmax(0,1fr) 34px;align-items:center;gap:3px;padding:4px 6px}
+.cast-v030 .cast30-step{width:30px;height:30px;min-height:30px!important;padding:0!important;border-radius:50%;font-size:19px!important;line-height:28px;background:#ffffff0d}
+.cast-v030 .cast30-readout{min-width:0;text-align:center;display:flex;flex-direction:column;justify-content:center;height:100%;overflow:hidden}
+.cast-v030 .cast30-target{font-size:clamp(22px,11vw,38px);font-weight:900;line-height:.88;letter-spacing:-.045em;white-space:nowrap}
+.cast-v030 .cast30-target small{display:block;font-size:clamp(6px,2.6vw,9px);line-height:1;letter-spacing:.14em;color:#91a0b7;margin-top:5px}
+.cast-v030 .cast30-meta{display:flex;justify-content:center;align-items:center;gap:6px;min-width:0;margin-top:5px;font-size:clamp(6px,2.5vw,9px);font-weight:800;white-space:nowrap}
+.cast-v030 .cast30-meta span{color:#91a0b7}.cast-v030 .cast30-meta b{color:#eaf4ff}.cast-v030 .cast30-meta strong{color:#62d9ff;font-size:inherit}
+.cast-v030 .cast30-group{padding:4px;display:grid;grid-template-rows:auto minmax(0,1fr);gap:2px}
+.cast-v030 .cast30-title{font-size:clamp(6px,2.5vw,9px);line-height:1;font-weight:900;letter-spacing:.10em;color:#b9c8da;padding-left:2px}
+.cast-v030 .cast30-grid{min-width:0;min-height:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px}
+.cast-v030 .cast30-grid button{min-width:0!important;min-height:0!important;width:100%;height:100%;padding:0 1px!important;border-radius:7px!important;font-size:clamp(6px,2.65vw,9px)!important;line-height:1!important;font-weight:850!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:clip!important}
+.cast-v030 .cast30-grid button.active{background:linear-gradient(135deg,#62d9ff55,#7069ff44);border-color:#62d9ffaa;box-shadow:inset 0 0 0 1px rgba(98,217,255,.18)}
+.cast-v030 #powerCard{display:none!important}
+@media(max-width:150px),(max-height:150px){.cast-v030 .cast30-shell{padding:3px;gap:2px}.cast-v030 .cast30-temp{grid-template-columns:25px minmax(0,1fr) 25px;padding:2px 3px}.cast-v030 .cast30-step{width:23px;height:23px;min-height:23px!important;font-size:15px!important;line-height:21px}.cast-v030 .cast30-group{padding:3px}.cast-v030 .cast30-grid{gap:2px}.cast-v030 .cast30-target small{margin-top:3px}.cast-v030 .cast30-meta{margin-top:3px;gap:3px}}

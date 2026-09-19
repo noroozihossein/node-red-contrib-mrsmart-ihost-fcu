@@ -1,0 +1,38 @@
+{
+  "name": "node-red-contrib-mrsmart-ihost-fcu",
+  "version": "0.3.7",
+  "description": "Mr Smart iHost FCU controller for TYBAC-006 via Zigbee2MQTT, with native eWeLink CUBE Web and CAST custom UI support for SONOFF iHost",
+  "keywords": [
+    "node-red",
+    "sonoff",
+    "ihost",
+    "zigbee2mqtt",
+    "fcu",
+    "thermostat",
+    "mrsmart"
+  ],
+  "license": "MIT",
+  "author": "Mr Smart UK",
+  "main": "mrsmart-ihost-fcu.js",
+  "engines": {
+    "node": ">=16.20.0"
+  },
+  "dependencies": {
+    "mqtt": "4.3.7"
+  },
+  "node-red": {
+    "nodes": {
+      "mrsmart-ihost-fcu": "mrsmart-ihost-fcu.js"
+    }
+  },
+  "files": [
+    "mrsmart-ihost-fcu.js",
+    "mrsmart-ihost-fcu.html",
+    "ui/full.html",
+    "ui/cast.html",
+    "ui/app.js",
+    "ui/style.css",
+    "ui/compact.html",
+    "LICENSE"
+  ]
+}
